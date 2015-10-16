@@ -68,23 +68,24 @@ bool NetIO::SendData(char* data, int datasize)
 	return true;
 }
 
-bool NetIO::ReceiveData(char** data, int& datasize)
+bool NetIO::ReceiveData(char* data, int datasize)
 {
-	int readdata = 3073;
-	*data = new char[readdata];
-	char* tmpdata = *data;
+	int readdata = datasize;
 	int ret = 0;
-	ret = recv(m_sockfd,tmpdata,readdata,0);
-	while(ret)
+	while(readdata)
 	{
-			if(ret == -1)
-			{
+		ret = recv(m_sockfd,data+ret,readdata,0);
+		if(ret == -1)
+		{
 				cout<<"recv data error"<<endl;
 				return false;
-			}
-			readdata -= ret;
-			tmpdata += ret;
-			ret = recv(m_sockfd,tmpdata,readdata,0);
+		}
+		else if(ret == 0)
+		{
+				cout<<"server has shutdown"<<endl;
+				return false;
+		}
+		readdata -= ret;
 	}
 	return true;
 }

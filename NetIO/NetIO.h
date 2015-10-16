@@ -32,7 +32,7 @@ class NetIO
 		~NetIO();
 		bool InitConnect(const char* ipAddress);
 		bool SendData(char* data, int datasize);
-		bool ReceiveData(char** data, int& datasize);
+		bool ReceiveData(char* data, int datasize);
 	private:
 		int m_sockfd;
 };

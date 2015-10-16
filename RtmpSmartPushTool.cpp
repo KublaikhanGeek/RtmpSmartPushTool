@@ -84,5 +84,10 @@ void RtmpSmartPushTool::Srs_random_generate(char* bytes,int size)
 
 bool RtmpSmartPushTool::CreateAndReceiveS0S1()
 {
-	
+	char* S0S1 = new char[S0S1SIZE];
+	memset(S0S1,0,S0S1SIZE);
+	int num = 0;
+	m_netio.ReceiveData(S0S1+num,1);
+	num+=1;
+	m_netio.ReceiveData(S0S1+num,S0S1SIZE-1);	
 }
