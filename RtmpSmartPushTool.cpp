@@ -45,6 +45,11 @@ bool RtmpSmartPushTool::RtmpHandShake()
 	{
 			return false;
 	}
+	if(!CreateAndReceiveS0S1())
+	{
+			return false;
+	}
+
 	
 	return true;
 }
@@ -66,6 +71,10 @@ bool RtmpSmartPushTool::CreateAndSendC0C1()
 }
 
 
+bool RtmpSmartPushTool::CreateAndSendC2()
+{
+
+}
 
 
 void RtmpSmartPushTool::Srs_random_generate(char* bytes,int size)
@@ -89,5 +98,5 @@ bool RtmpSmartPushTool::CreateAndReceiveS0S1()
 	int num = 0;
 	m_netio.ReceiveData(S0S1+num,1);
 	num+=1;
-	m_netio.ReceiveData(S0S1+num,S0S1SIZE-1);	
+	m_netio.ReceiveData(S0S1+num,S0S1SIZE-1);
 }

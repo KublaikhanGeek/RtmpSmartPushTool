@@ -28,6 +28,7 @@ class RtmpSmartPushTool
 	private:
 		bool CreateAndSendC0C1();
 		bool CreateAndReceiveS0S1();
+		bool CreateAndSendC2();
 		void Srs_random_generate(char* bytes,int size);
 	private:
 		NetIO m_netio;
